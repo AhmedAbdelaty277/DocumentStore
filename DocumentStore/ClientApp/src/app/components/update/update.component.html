@@ -1,0 +1,40 @@
+<div>
+    <h3>Update Document</h3>
+    <form>
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <br>
+            <input type="text" class="form-control" id="name" [(ngModel)]="documentInfo.name" name="name">
+        </div>
+
+        <div class="form-group">
+            <label for="createdDate">Created Date</label>
+            <br>
+            <input type="date" class="form-control" id="createdDate" [(ngModel)]=" documentInfo.createdDate" name="createdDate">
+        </div>
+
+        <div class="form-group">
+            <label for="dueDate">Due Date</label>
+            <br>
+            <input type="date" class="form-control" id="dueDate" [(ngModel)]=" documentInfo.dueDate" name="dueDate">
+        </div>
+
+        <div class="form-group">
+            <label for="priority">Priority</label>
+            <br>
+            <select class="form-control" [(ngModel)]="documentInfo.priorityId" 
+            id="priority" name="priority">
+                <option *ngFor="let priority of priorities" [value]="priority.id" >{{priority.name}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-success" type="submit" (click)="updateDocument()">Submit</button>
+        </div>
+
+        <div class="form-group">
+            <button routerLink="/" class="btn btn-secondary">Return to document list</button>
+        </div>
+    </form>
+</div>  

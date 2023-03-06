@@ -1,0 +1,35 @@
+<div class="no-data text-center" *ngIf="documents.length == 0">
+    <br>
+    <p style="font-size: 22px;">There is no documents inserted yet!</p>
+    <button class="btn btn-primary" routerLink="/insert">
+      Insert Document
+    </button>
+</div>
+
+<div *ngIf="documents.length !== 0">
+    <h3>Documents List</h3>
+    <table class="styled-table">
+        <thead>
+            <tr style="text-align: center;">
+                <th>Name</th>
+                <th>Created Date</th>
+                <th>Duo Date</th>
+                <th>Priority</th>
+                <th colspan="3">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let document of documents">
+                <td>{{document.name}}</td>
+                <td>{{document.createdDate.split('T')[0]}}</td>
+                <td>{{document.dueDate.split('T')[0]}}</td>
+                <ng-container *ngFor="let priority of priorities">
+                    <td *ngIf="document.priorityId == priority.id">{{priority.name}}</td>
+                </ng-container>
+                <td><button class="btn btn-warning" routerLink="/details/{{document.id}}">Details</button></td>
+                <td><button class="btn btn-success" routerLink="/update/{{document.id}}">Update</button></td>
+                <td><button class="btn btn-danger" (click)="deleteDocument(document.id)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

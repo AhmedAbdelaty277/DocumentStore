@@ -1,0 +1,40 @@
+<div>
+    <h3>Insert Document</h3>
+    <form [formGroup]="contactForm">
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <br>
+            <input type="text" name="Name" id="Name" formControlName = "Name" placeholder="Enter document name" class="form-control">
+          </div>
+
+        <div class="form-group">
+            <label for="createdDate">Created Date</label>
+            <br>
+            <input type="date" name="createdDate" id="createdDate" formControlName = "CreatedDate" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="dueDate">Due Date</label>
+            <br>
+            <input type="date" name="dueDate" id="dueDate" formControlName = "DueDate" class="form-control">
+        </div>
+        
+        <div class="form-group">
+            <label for="priority">Priority</label>
+            <br>
+            <select formControlName="PriorityId" class="form-control" >
+                <option value="">Select a Priority</option>
+                <option *ngFor="let priority of priorities" [ngValue]="priority.id">{{priority.name}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-success" type="submit" (click)="submit()" [disabled]="!contactForm.valid">Submit</button>
+        </div>
+
+        <div class="form-group">
+            <button routerLink="/" class="btn btn-secondary">Return to document list</button>
+        </div>
+    </form>
+</div>

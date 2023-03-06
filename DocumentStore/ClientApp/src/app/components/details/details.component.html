@@ -1,0 +1,29 @@
+<div>
+    <h3>Document Details</h3>
+    <table class="styled-table">
+        <thead>
+            <tr style="text-align: center;">
+                <th>Name</th>
+                <th>Created Date</th>
+                <th>Duo Date</th>
+                <th>Priority</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="currentDocument">
+                <td>{{currentDocument.name}}</td>
+                <td>{{currentDocument.createdDate.split('T')[0]}}</td>
+                <td>{{currentDocument.dueDate.split('T')[0]}}</td>
+                <ng-container *ngFor="let priority of priorities">
+                    <td *ngIf="currentDocument.priorityId == priority.id">{{priority.name}}</td>
+                </ng-container>
+                <td><button class="btn btn-success" routerLink="/update/{{currentDocument.id}}">Update</button></td>
+                <td><button class="btn btn-danger" (click)="deleteDocument(currentDocument.id)">Delete</button></td>
+            </tr>
+            <tr>
+                <td colspan="6"><button routerLink="/" class="btn btn-secondary">Return to document list</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
